@@ -1,0 +1,400 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: url(../images/colorful_abstract_geometric_shapes_design-wallpaper-1920x1080.jpg);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: white;
+}
+
+/* Index
+-------------------------------------------------- */
+
+.pb-3 {
+    text-align: -webkit-center;
+}
+
+.text-center {
+    width: 35rem;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #1861ac;
+        border-color: #1861ac;
+    }
+
+
+.ToDos {
+    margin: auto;
+    border: solid #ffffff00 4px;
+    height: 37rem;
+    width: 35rem;
+    border-radius: 15px;
+    background-color: #0000009c;
+    box-shadow: 15px 15px 10px #000000ad;
+}
+
+    .ToDos .bottom-btn {
+        float: left;
+        width: 10rem;
+        margin-right: 4rem;
+    }
+
+        .ToDos .bottom-btn .btn-primary {
+            height: 45px;
+            width: 115px;
+            font-size: 18px;
+            border-radius: 10px !important;
+            border: solid 2px #007bff;
+            font-weight: 700;
+        }
+
+        .ToDos .bottom-btn .btn-danger {
+            height: 45px;
+            width: 115px;
+            font-size: 18px;
+            border-radius: 10px !important;
+            border: solid 2px #dc3545;
+            font-weight: 700;
+        }
+
+    .ToDos .Other {
+        margin-right: 1rem;
+    }
+
+    .ToDos .Other .btn-primary {
+        width: 90px;
+    }
+
+
+    .ToDos a {
+        /*margin-left: 1rem;*/
+        color: black;
+        text-decoration: none;
+        font-weight: 700;
+        color: white;
+    }
+
+    .ToDos .container {
+        margin-top: 1.5rem;
+        height: 31rem;
+        text-align: -webkit-left;
+        padding: 0;
+        line-height: 50px;
+    }
+
+        .ToDos .container .row .form-group {
+            display: flex;
+            flex: auto;
+            border: #3b38387d solid 4px;
+            border-radius: 2rem;
+            height: 4rem;
+            background-color: #000000a3;
+        }
+
+    .ToDos .row {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        display: block;
+    }
+
+    .ToDos .col-1 {
+        padding: 0;
+    }
+
+
+
+    .ToDos .btn-primary {
+        height: 35px;
+        width: 57px;
+        font-size: 15px;
+        border-radius: 20px;
+        padding: 0rem 0rem 0rem 0rem;
+        line-height: 2;
+        color: white;
+        background-color: #007bff00;
+        border: solid 2px #007bff;
+        transition: background-color 0.5s;
+    }
+
+        .ToDos .btn-primary:hover {
+            background-color: #007bff;
+        }
+
+    .ToDos .btn-danger {
+        height: 35px;
+        width: 70px;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 20px;
+        padding: 0rem 0rem 0rem 0rem;
+        color: white;
+        font-weight: 700;
+        background-color: #007bff00;
+        border: solid 2px #dc3545;
+        transition: background-color 0.5s;
+    }
+
+        .ToDos .btn-danger:hover {
+            background-color: #dc3545;
+        }
+
+
+    .ToDos .form-check-input {
+        position: unset;
+        margin-right: 1rem;
+        height: 30px;
+        width: 20px;
+        vertical-align: text-top;
+        margin: 0;
+    }
+
+
+.bottom {
+}
+
+    .bottom .row {
+    }
+
+    .bottom .btn {
+        margin-top: 1.5rem;
+    }
+
+    .bottom .row .bottom-btn {
+        padding: 0;
+    }
+
+/* Modal
+-------------------------------------------------- */
+.modal-header {
+    display: unset;
+    padding: 0;
+}
+
+.modal-dialog {
+    margin-top: 20rem;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-content {
+    background-color: #00000080;
+    color: white;
+    box-shadow: 10px 10px 10px #000000ad;
+}
+
+.modal-footer {
+    border-top: 0px solid #3a3b3b8a;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+    .modal-footer .btn-primary {
+        height: 40px;
+        width: 85px;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 0rem 0rem 0rem 0rem;
+        line-height: 2;
+        color: white;
+        font-weight: 700;
+        background-color: #007bff00;
+        border: solid 2px #007bff;
+        transition: background-color 0.5s;
+        margin-right: 1rem;
+    }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #007bff;
+        }
+
+    .modal-footer .btn-secondary {
+        height: 40px;
+        width: 85px;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 0rem 0rem 0rem 0rem;
+        color: white;
+        font-weight: 700;
+        background-color: #007bff00;
+        border: solid 3px #646464;
+        transition: background-color 0.5s;
+    }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #646464;
+        }
+
+.modal-body {
+    height: 15rem;
+}
+
+    .modal-body .editModal .form-control {
+        background-color: #0000008c;
+        color: white;
+        border: solid 2px #9e92927a;
+    }
+
+    .modal-body .form-group {
+        text-align: -webkit-left;
+    }
+
+    .modal-body .ModalAdd {
+        float: left;
+    }
+
+
+/* Edit page
+--------------------------------------------------------*/
+.EditPage {
+    width: 40rem;
+}
+
+    .EditPage .editBtn {
+        margin-top: 2rem;
+        float: left;
+    }
+
+    .EditPage .form-control {
+        background-color: #0000008c;
+        color: white;
+        border: solid 2px #9e92927a;
+    }
+
+    .EditPage .editBtn .btn-primary {
+        height: 40px;
+        width: 85px;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 0rem 0rem 0rem 0rem;
+        line-height: 2;
+        color: white;
+        font-weight: 700;
+        background-color: #007bff00;
+        border: solid 2px #007bff;
+        transition: background-color 0.5s;
+        margin-right: 1rem;
+    }
+
+        .EditPage .editBtn .btn-primary:hover {
+            background-color: #007bff;
+        }
+
+    .EditPage .editBtn .btn-danger {
+        height: 40px;
+        width: 85px;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 0rem 0rem 0rem 0rem;
+        color: white;
+        font-weight: 700;
+        background-color: #007bff00;
+        border: solid 3px #dc3545;
+        transition: background-color 0.5s;
+    }
+
+        .EditPage .editBtn .btn-danger:hover {
+            background-color: #dc3545;
+        }
+
+    .EditPage .container {
+        margin: auto;
+        border: solid #ffffff00 4px;
+        height: 15rem;
+        width: 40rem;
+        border-radius: 15px;
+        padding: 1rem;
+        background-color: #0000009c;
+        color: white;
+        box-shadow: 10px 10px 10px #000000ad;
+    }
+
+        .EditPage .container .editLabel {
+            margin-right: 3rem;
+        }
+
+        .EditPage .container .editCheckbox {
+            width: 15px;
+            height: 15px;
+        }
+
+.container .col-6 {
+    float: left !important;
+    text-align: -webkit-left !important;
+}

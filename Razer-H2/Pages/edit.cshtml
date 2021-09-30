@@ -1,0 +1,47 @@
+﻿@page "{id}"
+@model Razer_H2.Pages.editModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="display-1">Edit</h1>
+<form method="post">
+    <div class="EditPage">
+        <div class="container">
+            <div class="editPage col-6">
+                <div class="form-group">
+                    <label>Priority:</label>
+                    @foreach (object item in Model.PriorityList)
+                    {
+                        <div class="form-check">
+                            @if (item.ToString() == Model.RadioPriority.ToString())
+                            {
+                                <input type="radio" name="RadioPriority" value="@item.ToString()" checked /> @item.ToString() <br />
+                            }
+                            else
+                            {
+                                <input type="radio" name="RadioPriority" value="@item.ToString()" /> @item.ToString() <br />
+                            }
+
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="editPage col-6">
+                <div class="form-group">
+                    <label>Description: </label>
+                    <input type="text" asp-for="TextDescrip" class="form-control " id="TextDescrip" placeholder="Write description" />
+                    <span asp-validation-for="TextDescrip"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="editLabel">Mark as complet</label>
+                <input type="checkbox" asp-for="IsChecked" name="IsChecked" class="form-check-input editCheckbox" value="true" />
+            </div>
+            <div class="form-group editBtn">
+                <button type="submit" asp-page-handler="save" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-danger" asp-page-handler="close">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,128 @@
+USE MASTER
+GO
+
+--Closes all connections
+ALTER DATABASE TodoDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+
+--Drop Pre-existing database
+DROP DATABASE IF EXISTS TodoDB
+GO
+CREATE DATABASE TodoDB
+GO
+USE TodoDB
+GO
+
+--Create Tables
+CREATE TABLE [Todo] (
+  [Todo_Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Contact_Id] int NOT NULL,
+  [Priority_Id] int NOT NULL,
+  [Description] nvarchar(25),
+  [CreatedTime] datetime,
+  [IsCompleted] bit,
+  [IsDeleted] bit
+)
+GO
+
+CREATE TABLE [Contacts] (
+  [Contact_Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Name] nvarchar(50) NOT NULL,
+  [Adress] nvarchar(50),
+  [E_mail] nvarchar(MAX),
+  [Phone] varchar(20)
+)
+GO
+
+CREATE TABLE [Priorities] (
+  [Priority_Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Priority] char(6)
+)
+GO
+
+--Relatations
+ALTER TABLE [Todo] ADD FOREIGN KEY ([Contact_Id]) REFERENCES [Contacts] ([Contact_Id])
+GO
+
+ALTER TABLE [Todo] ADD FOREIGN KEY ([Priority_Id]) REFERENCES [Priorities] ([Priority_Id])
+GO
+
+--Fill Tables
+INSERT INTO Priorities VALUES('Low')
+INSERT INTO Priorities VALUES('Medium')
+INSERT INTO Priorities VALUES('High')
+GO
+
+INSERT INTO Contacts VALUES('Bodil', 'Adress1', 'Bodil@Mail.com', '12345678')
+INSERT INTO Contacts VALUES('Hans', 'Adress2', 'Hans@Mail.com', '88888888')
+GO
+
+--Stored Procedures
+--Create
+CREATE PROCEDURE CreateTodo
+@Contact_Id int,
+@Priority_Id int,
+@Description nvarchar(25),
+@IsCompleted bit,
+@IsDeleted bit
+AS
+INSERT INTO Todo(Contact_Id,Priority_Id,[Description],CreatedTime,IsCompleted,IsDeleted)
+VALUES (@Contact_Id,@Priority_Id,@Description,CURRENT_TIMESTAMP,@IsCompleted,@IsDeleted)
+GO
+
+CREATE PROCEDURE CreateContact
+@Name nvarchar(50),
+@Adress nvarchar(50),
+@E_mail nvarchar(MAX),
+@Phone varchar(20)
+AS
+INSERT INTO Contacts([Name],Adress,E_mail,Phone)
+VALUES (@Name,@Adress,@E_mail,@Phone)
+GO
+
+--Get
+CREATE PROCEDURE GetTodo
+AS
+Select *
+FROM Todo
+INNER JOIN Priorities
+ON Todo.Priority_Id = Priorities.Priority_Id
+WHERE IsDeleted = 0
+GO
+
+CREATE PROCEDURE GetContact
+AS
+SELECT Contact_Id, [Name]
+FROM Contacts
+GO
+
+CREATE PROCEDURE GetPriority
+AS
+SELECT *
+FROM Priorities
+GO
+
+--Update
+CREATE PROCEDURE UpdateTodo
+@Id int,
+@Description nvarchar(25),
+@CreatedTime datetime,
+@IsCompleted bit,
+@IsDeleted bit
+AS
+UPDATE Todo
+SET [Description] = @Description, CreatedTime = @CreatedTime, IsCompleted = @IsCompleted, IsDeleted = @IsDeleted
+WHERE Todo_Id = @Id
+GO
+
+CREATE PROCEDURE UpdateContacts
+@Id int,
+@Name nvarchar(50),
+@Adress nvarchar(50),
+@E_mail nvarchar(MAX),
+@Phone varchar(20)
+AS
+UPDATE Contacts
+SET [Name] = @Name, Adress = @Adress, E_mail = @E_mail, Phone = @Phone
+WHERE Contact_Id = @Id
+GO
