@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Razer_H2.Modul;
+using System.Data;
 
 
 namespace Razer_H2.Repository
@@ -18,13 +19,14 @@ namespace Razer_H2.Repository
 
         internal static IConfigurationRoot configuration { get; set; }
         static string connectionString;
-        SqlConnection sqlCon = new SqlConnection(connectionString);
+        SqlConnection sqlCon;
 
-        public static void SetConnectionString()
+        public ToDoRepository()
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
             configuration = builder.Build();
-            connectionString = configuration.GetConnectionString("HelpMe");
+            connectionString = configuration.GetConnectionString("DefaultConnection");
+            sqlCon = new SqlConnection(connectionString);
         }
 
 
@@ -34,28 +36,25 @@ namespace Razer_H2.Repository
         /// <param name="desc"></param>
         public void CreateToDo(ToDo toDo)
         {
-            using (var cmd = sqlCon.CreateCommand())
+
+            SqlCommand cmd = new SqlCommand("CreateTodo", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            sqlCon.Open();
+
+            try
             {
-                cmd.CommandText = "EXEC CreateTodo @Contact_Id, @Priority_Id, @Description, @CreatedTime, @IsCompleted, @IsDeleted";
-                sqlCon.Open();
+                cmd.Parameters.AddWithValue("@Contact_Id", toDo.ContactId);
+                cmd.Parameters.AddWithValue("@Priority_Id", toDo.PriorityId);
+                cmd.Parameters.AddWithValue("@Description", toDo.TaskDescription);
 
-                try
-                {
-                    cmd.Parameters.AddWithValue("@Contact_Id", toDo.ContactId);
-                    cmd.Parameters.AddWithValue("@Priority_Id", toDo.PriorityId);
-                    cmd.Parameters.AddWithValue("@Description", toDo.TaskDescription);
-                    cmd.Parameters.AddWithValue("@CreatedTime", toDo.CreatedTime);
-                    cmd.Parameters.AddWithValue("@IsCompleted", toDo.IsCompleted);
-                    cmd.Parameters.AddWithValue("@IsDeleted", 0);
-
-                    cmd.ExecuteNonQuery();
-                }
-
-                finally
-                {
-                    sqlCon.Close();
-                }
+                cmd.ExecuteNonQuery();
             }
+
+            finally
+            {
+                sqlCon.Close();
+            }
+
         }
 
         /// <summary>
@@ -72,12 +71,17 @@ namespace Razer_H2.Repository
         /// </summary>
         public List<ToDo> ReadAllToDo()
         {
-
-            using (var cmd = sqlCon.CreateCommand())
+            if (toDos != null)
             {
-                cmd.CommandText = "EXEC GetTodo";
+                toDos.Clear();
+            }
 
-                sqlCon.Open();
+            SqlCommand cmd = new SqlCommand("GetTodo", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlCon.Open();
+            try
+            {
                 using (var reader = cmd.ExecuteReader())
                 {
                     //Todo table
@@ -104,24 +108,37 @@ namespace Razer_H2.Repository
                         //Priority table
                         string Priority = (reader.GetValue(indexOfColumn7).ToString());
 
-                        toDos.Add(new ToDo(ContactId, PriorityId, Description) { ID = TodoId, CreatedTime = CreatedAt, Priority = Priority, IsCompleted = IsCompleted });
+                        toDos.Add(new ToDo { ID = TodoId, ContactId = ContactId, PriorityId = PriorityId, CreatedTime = CreatedAt, Priority = Priority, IsCompleted = IsCompleted, TaskDescription = Description });
 
                     }
 
                 }
-
             }
-            sqlCon.Close();
+            finally
+            {
+                sqlCon.Close();
+            }
+
             return toDos;
         }
 
+        /// <summary>
+        /// Loads all contacts into list
+        /// </summary>
+        /// <returns></returns>
         public List<Contact> ReadContacts()
         {
-            using (var cmd = sqlCon.CreateCommand())
+            if (contacts != null)
             {
-                cmd.CommandText = "EXEC GetContact";
+                contacts.Clear();
+            }
 
-                sqlCon.Open();
+            SqlCommand cmd = new SqlCommand("GetContact", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlCon.Open();
+            try
+            {
                 using (var reader = cmd.ExecuteReader())
                 {
                     //Contact table
@@ -139,20 +156,36 @@ namespace Razer_H2.Repository
                     }
 
                 }
-                sqlCon.Close();
-
-                return contacts;
-
             }
+            finally
+            {
+                sqlCon.Close();
+            }
+
+
+            return contacts;
+
+
         }
 
+        /// <summary>
+        /// Loads all priorities into radio buttons.
+        /// </summary>
+        /// <returns></returns>
         public List<Priority> ReadPriorities()
         {
-            using (var cmd = sqlCon.CreateCommand())
+            if (priorities != null)
             {
-                cmd.CommandText = "EXEC GetPriority";
+                priorities.Clear();
+            }
 
-                sqlCon.Open();
+            SqlCommand cmd = new SqlCommand("GetPriority", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlCon.Open();
+
+            try
+            {
                 using (var reader = cmd.ExecuteReader())
                 {
                     //Contact table
@@ -170,20 +203,39 @@ namespace Razer_H2.Repository
                     }
 
                 }
-                sqlCon.Close();
-
-                return priorities;
-
             }
+            finally
+            {
+                sqlCon.Close();
+            }
+            return priorities;
+
         }
         /// <summary>
         /// Update ToDo
         /// </summary>
         /// <param name="id"></param>
-        public void UpdateToDo(ToDo obj)
+        public void UpdateToDo()
         {
-            int index = toDos.FindIndex(x => x.ID == obj.ID);
-            toDos[index] = obj;
+
+            SqlCommand cmd = new SqlCommand("UpdateTodo", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            sqlCon.Open();
+
+            try
+            {
+                //cmd.Parameters.AddWithValue("@Id", );
+                //cmd.Parameters.AddWithValue("@Priority_Id", toDo.PriorityId);
+                //cmd.Parameters.AddWithValue("@Description", toDo.TaskDescription);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            finally
+            {
+                sqlCon.Close();
+            }
+
         }
 
         /// <summary>

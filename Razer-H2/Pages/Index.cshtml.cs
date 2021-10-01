@@ -81,7 +81,7 @@ namespace Razer_H2.Pages
             {
                 ToDo to = _doRepository.FindToDo(item);
                 to.IsCompleted = true;
-                _doRepository.UpdateToDo(to);
+                _doRepository.UpdateToDo();
             }
 
             ToDos = _doRepository.ReadAllToDo();
@@ -97,7 +97,7 @@ namespace Razer_H2.Pages
         /// <returns></returns>
         public IActionResult OnPostAdd()
         {
-            ToDo todo = new ToDo( Todo.ContactId, Todo.PriorityId, TextDescrip);
+            ToDo todo = new ToDo { ContactId = Todo.ContactId, PriorityId = Todo.PriorityId ,TaskDescription = TextDescrip };
 
             _doRepository.CreateToDo(todo);
 

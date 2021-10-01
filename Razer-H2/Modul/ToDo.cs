@@ -17,12 +17,5 @@ namespace Razer_H2.Modul
         public string Priority { get; set; }
         public bool IsCompleted { get; set; }
 
-        public ToDo(int contactId, int priorityId, string taskDescription)
-        {            
-            ContactId = contactId;
-            PriorityId = priorityId;
-            IsCompleted = false;
-            TaskDescription = taskDescription;
-        }
     }
 }

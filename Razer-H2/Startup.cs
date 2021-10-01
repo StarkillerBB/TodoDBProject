@@ -27,7 +27,6 @@ namespace Razer_H2
         {
             services.AddScoped<IToDoRepository, ToDoRepository>();
             services.AddSingleton<IToDoRepository>(new ToDoRepository());
-            ToDoRepository.SetConnectionString();
             services.AddRazorPages();
         }
 

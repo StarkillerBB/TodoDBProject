@@ -10,7 +10,7 @@ namespace Razer_H2.Repository
     {
         void CreateToDo(ToDo toDo);
 
-        void UpdateToDo(ToDo obj);
+        void UpdateToDo();
 
         void DeleteToDo(ToDo toDo);
 
