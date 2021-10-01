@@ -19,9 +19,9 @@ CREATE TABLE [Todo] (
   [Contact_Id] int NOT NULL,
   [Priority_Id] int NOT NULL,
   [Description] nvarchar(25),
-  [CreatedTime] datetime,
-  [IsCompleted] bit,
-  [IsDeleted] bit
+  [CreatedTime] datetime default GETDATE(),
+  [IsCompleted] bit default 0,
+  [IsDeleted] bit default 0
 )
 GO
 
@@ -57,17 +57,18 @@ INSERT INTO Contacts VALUES('Bodil', 'Adress1', 'Bodil@Mail.com', '12345678')
 INSERT INTO Contacts VALUES('Hans', 'Adress2', 'Hans@Mail.com', '88888888')
 GO
 
+INSERT INTO Todo VALUES(1, 1, 'HelpMe', GETDATE(), 0, 0)
+GO
+
 --Stored Procedures
 --Create
 CREATE PROCEDURE CreateTodo
 @Contact_Id int,
 @Priority_Id int,
-@Description nvarchar(25),
-@IsCompleted bit,
-@IsDeleted bit
+@Description nvarchar(25)
 AS
-INSERT INTO Todo(Contact_Id,Priority_Id,[Description],CreatedTime,IsCompleted,IsDeleted)
-VALUES (@Contact_Id,@Priority_Id,@Description,CURRENT_TIMESTAMP,@IsCompleted,@IsDeleted)
+INSERT INTO Todo(Contact_Id,Priority_Id,[Description])
+VALUES (@Contact_Id,@Priority_Id,@Description)
 GO
 
 CREATE PROCEDURE CreateContact
