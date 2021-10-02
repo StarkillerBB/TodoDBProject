@@ -107,12 +107,10 @@ GO
 CREATE PROCEDURE UpdateTodo
 @Id int,
 @Description nvarchar(25),
-@CreatedTime datetime,
-@IsCompleted bit,
-@IsDeleted bit
+@IsCompleted bit
 AS
 UPDATE Todo
-SET [Description] = @Description, CreatedTime = @CreatedTime, IsCompleted = @IsCompleted, IsDeleted = @IsDeleted
+SET [Description] = @Description, IsCompleted = @IsCompleted
 WHERE Todo_Id = @Id
 GO
 
@@ -126,4 +124,13 @@ AS
 UPDATE Contacts
 SET [Name] = @Name, Adress = @Adress, E_mail = @E_mail, Phone = @Phone
 WHERE Contact_Id = @Id
+GO
+
+--Delete
+CREATE PROCEDURE DeleteTodo
+@Id int
+AS
+UPDATE Todo
+SET IsDeleted = 1
+WHERE Todo_Id = @Id
 GO
