@@ -128,13 +128,8 @@ namespace Razer_H2.Pages
         {
             ToDos = _doRepository.ReadAllToDo();
             ToDos = ToDos.Where(x => x.IsCompleted == true).OrderBy(x => x.CreatedTime).ToList();
-
+            
             return Page();
-        }
-
-        public IActionResult OnPostBack()
-        {
-            return RedirectToPage("/Index");
         }
 
     }

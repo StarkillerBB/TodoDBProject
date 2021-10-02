@@ -11,6 +11,7 @@
     <form method="post">
         <div class="ToDos">
             <div class="container">
+                <button class="btn btn-lg btn-primary createBtn" type="button" data-toggle="modal" data-target="#addModal">Create New</button>
                 <div class="row">
                     @foreach (Modul.ToDo item in Model.ToDos.OrderBy(x => x.CreatedTime))
                     {
@@ -40,22 +41,13 @@
                 </div>
             </div>
             <div class="bottom-btn-group">
-                <div class="bottom-btn col-lg-3">
-                    <button class="btn btn-lg btn-primary" type="button" data-toggle="modal" data-target="#addModal">Create New</button>
-                </div>
-                <div class="bottom-btn Other col-lg-2">
-                    <button class="btn btn-lg btn-primary" asp-page-handler="IsChecked" type="submit">Show unfinished</button>
-                </div>
-                <div class="bottom-btn Other col-lg-2">
-                    <button class="btn btn-lg btn-primary" asp-page-handler="load" type="submit">Show finished</button>
-                </div>
-                <div class="bottom-btn Other col-lg-2">
-                    <button class="btn btn-lg btn-danger" asp-page-handler="back" type="submit">Back</button>
-                </div>
+                
+                <button class="btn btn-lg btn-primary" asp-page-handler="IsChecked" type="submit">Save</button>
+                <button class="btn btn-lg btn-primary" asp-page-handler="load" type="submit">Show finished</button>
             </div>
         </div>
     </form>
-
+    
 
 
 
@@ -69,11 +61,11 @@
                         <div class="editModal col-6">
                             <div class="form-group">
                                 <label>Priority:</label>
-                            <div class="form-check">
-                                <select asp-for="Todo.PriorityId" asp-items="@Model.PrioritiesId">
-                                    <option>Select Prio</option>
-                                </select>
-                            </div>
+                                <div class="form-check">
+                                    <select asp-for="Todo.PriorityId" asp-items="@Model.PrioritiesId">
+                                        <option>Select Prio</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="editModal col-6">
@@ -90,7 +82,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >Create</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>

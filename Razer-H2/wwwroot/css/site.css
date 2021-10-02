@@ -63,7 +63,9 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: url(../images/colorful_abstract_geometric_shapes_design-wallpaper-1920x1080.jpg);
+    background: url(../images/BG.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .footer {
@@ -82,8 +84,8 @@ body {
     text-align: -webkit-center;
 }
 
-.text-center {
-    width: 35rem;
+.display-1 {
+    color: white;
 }
 
 .btn-primary {
@@ -102,44 +104,29 @@ body {
 .ToDos {
     margin: auto;
     border: solid #ffffff00 4px;
-    height: 37rem;
-    width: 35rem;
+    width: 45rem;
     border-radius: 15px;
     background-color: #0000009c;
     box-shadow: 15px 15px 10px #000000ad;
 }
 
-    .ToDos .bottom-btn {
-        float: left;
-        width: 10rem;
-        margin-right: 4rem;
+    .ToDos .createBtn{
+        width: 100% !important;
     }
-
-        .ToDos .bottom-btn .btn-primary {
-            height: 45px;
-            width: 115px;
-            font-size: 18px;
-            border-radius: 10px !important;
-            border: solid 2px #007bff;
-            font-weight: 700;
-        }
-
-        .ToDos .bottom-btn .btn-danger {
-            height: 45px;
-            width: 115px;
-            font-size: 18px;
-            border-radius: 10px !important;
-            border: solid 2px #dc3545;
-            font-weight: 700;
-        }
-
+    .ToDos .bottom-btn-group {
+        display: flex;
+        justify-content:space-around;
+    }
+    .bottom-btn-group .btn{
+        width: 30% !important;
+    }
     .ToDos .Other {
         margin-right: 1rem;
     }
 
-    .ToDos .Other .btn-primary {
-        width: 90px;
-    }
+        .ToDos .Other .btn-primary {
+            width: 90px;
+        }
 
 
     .ToDos a {
@@ -151,7 +138,6 @@ body {
     }
 
     .ToDos .container {
-        margin-top: 1.5rem;
         height: 31rem;
         text-align: -webkit-left;
         padding: 0;
