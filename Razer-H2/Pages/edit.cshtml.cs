@@ -23,9 +23,9 @@ namespace Razer_H2.Pages
         public string TextDescrip { get; set; }
 
         [BindProperty]
-        public int RadioPriority { get; set; }
+        public Prio RadioPriority { get; set; }
 
-        public Array PriorityList => Enum.GetValues(typeof(int));
+        public Array PriorityList => Enum.GetValues(typeof(Prio));
 
         [BindProperty]
         public ToDo Todo { get; set; }

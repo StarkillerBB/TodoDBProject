@@ -69,25 +69,9 @@
                         <div class="editModal col-6">
                             <div class="form-group">
                                 <label>Priority:</label>
-                                @*@foreach (object item in Model.PriorityList)
-                                {
-                                    <div class="form-check">
-
-                                        
-
-                                        @if (item.ToString() == "Normal")
-                                        {
-                                            <input type="radio" name="RadioPriority" value="@item.ToString()" checked /> @item.ToString() <br />
-                                        }
-                                        else
-                                        {
-                                            <input type="radio" name="RadioPriority" value="@item.ToString()" /> @item.ToString() <br />
-                                        }
-                                    </div>
-                                }*@
                             <div class="form-check">
                                 <select asp-for="Todo.PriorityId" asp-items="@Model.PrioritiesId">
-                                    <option>Select User</option>
+                                    <option>Select Prio</option>
                                 </select>
                             </div>
                             </div>

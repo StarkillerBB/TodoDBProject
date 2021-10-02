@@ -63,7 +63,22 @@ namespace Razer_H2.Repository
         /// <param name="id"></param>
         public void DeleteToDo(ToDo toDo)
         {
-            toDos.Remove(toDo);
+            SqlCommand cmd = new SqlCommand("DeleteTodo", sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            sqlCon.Open();
+
+            try
+            {
+
+                cmd.Parameters.AddWithValue("@Id", toDo.ID);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            finally
+            {
+                sqlCon.Close();
+            }
         }
 
         /// <summary>
@@ -215,7 +230,7 @@ namespace Razer_H2.Repository
         /// Update ToDo
         /// </summary>
         /// <param name="id"></param>
-        public void UpdateToDo()
+        public void UpdateToDo(ToDo toDo)
         {
 
             SqlCommand cmd = new SqlCommand("UpdateTodo", sqlCon);
@@ -224,9 +239,10 @@ namespace Razer_H2.Repository
 
             try
             {
-                //cmd.Parameters.AddWithValue("@Id", );
-                //cmd.Parameters.AddWithValue("@Priority_Id", toDo.PriorityId);
-                //cmd.Parameters.AddWithValue("@Description", toDo.TaskDescription);
+
+                cmd.Parameters.AddWithValue("@Id", toDo.ID);
+                cmd.Parameters.AddWithValue("@Description", toDo.TaskDescription);
+                cmd.Parameters.AddWithValue("@IsCompleted", toDo.IsCompleted);
 
                 cmd.ExecuteNonQuery();
             }

@@ -81,7 +81,7 @@ namespace Razer_H2.Pages
             {
                 ToDo to = _doRepository.FindToDo(item);
                 to.IsCompleted = true;
-                _doRepository.UpdateToDo();
+                _doRepository.UpdateToDo(to);
             }
 
             ToDos = _doRepository.ReadAllToDo();

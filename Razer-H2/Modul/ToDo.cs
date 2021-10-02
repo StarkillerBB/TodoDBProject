@@ -6,6 +6,9 @@ using System.Runtime.InteropServices;
 
 namespace Razer_H2.Modul
 {
+
+    public enum Prio { Low, Medium, High }
+
     public class ToDo : IToDo
     {
         //ToDo class felt
