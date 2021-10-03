@@ -57,9 +57,6 @@ INSERT INTO Contacts VALUES('Bodil', 'Adress1', 'Bodil@Mail.com', '12345678')
 INSERT INTO Contacts VALUES('Hans', 'Adress2', 'Hans@Mail.com', '88888888')
 GO
 
-INSERT INTO Todo VALUES(1, 1, 'HelpMe', GETDATE(), 0, 0)
-GO
-
 --Stored Procedures
 --Create
 CREATE PROCEDURE CreateTodo
