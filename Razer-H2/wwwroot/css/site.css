@@ -104,7 +104,6 @@ body {
 .ToDos {
     margin: auto;
     border: solid #ffffff00 4px;
-    width: 45rem;
     border-radius: 15px;
     background-color: #0000009c;
     box-shadow: 15px 15px 10px #000000ad;
@@ -123,10 +122,30 @@ body {
     .ToDos .Other {
         margin-right: 1rem;
     }
+#txtFinished{
+    color: white;
+}
+.prio{
+    text-align:center;
+    border-radius: 10px;
+    margin: 2px;
+}
+#highPrio {
+    color: red;
+    border: 1px dashed darkred;
+}
+#medPrio {
+    color: yellow;
+    border: 1px dashed yellow;
+}
+#lowPrio {
+    color: forestgreen;
+    border: 1px dashed forestgreen;
+}
 
-        .ToDos .Other .btn-primary {
-            width: 90px;
-        }
+.ToDos .Other .btn-primary {
+    width: 90px;
+}
 
 
     .ToDos a {
